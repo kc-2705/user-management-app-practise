@@ -6,7 +6,8 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 
-const MONGO_URI = 'mongodb+srv://kavya123:kavya123@cluster0.r1ll2iq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const MONGO_URI = process.env.MONGO_URI;
+    //'mongodb+srv://kavya123:kavya123@cluster0.r1ll2iq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 mongoose.connect(MONGO_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
