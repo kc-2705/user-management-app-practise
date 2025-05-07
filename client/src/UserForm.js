@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-//const API = 'http://localhost:5000/users';
+const API = 'http://localhost:5000/users';
 
-const baseURL = process.env.REACT_APP_API_URL;
+//const baseURL = process.env.REACT_APP_API_URL;
 
 const UserForm = () => {
     const [form, setForm] = useState({
@@ -19,7 +19,7 @@ const UserForm = () => {
     const [editId, setEditId] = useState(null);
 
     const fetchUsers = async () => {
-        const res = await axios.get(`${baseURL}`);
+        const res = await axios.get(API);
         setUsers(res.data);
     };
 
@@ -43,9 +43,9 @@ const UserForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (editId) {
-            await axios.put(`${baseURL}/${editId}`, form);
+            await axios.put(`${API}/${editId}`, form);
         } else {
-            await axios.post(baseURL, form);
+            await axios.post(API, form);
         }
         setForm({
             firstName: '',
@@ -67,7 +67,7 @@ const UserForm = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${baseURL}/${id}`);
+            await axios.delete(`${API}/${id}`);
             fetchUsers();
         } catch (error) {
             console.error('Error deleting user:', error);
